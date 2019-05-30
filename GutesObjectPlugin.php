@@ -48,12 +48,19 @@ class GutesObjectPlugin {
 
 }
 
-// construction of plugin
-$scripts = new Scripts();
+add_action( 'init', function() {
 
-$api = new API();
-$hooks = new Hooks( $api );
-$database = new Database();
+	// construction of plugin
+	$scripts = new Scripts();
 
-$gutenbergObjectPlugin = new GutesObjectPlugin( $database, $api, $hooks );
-$gutenbergObjectPlugin->run();
+	$api = new API();
+	$hooks = new Hooks( $api );
+	$database = new Database();
+
+	$gutenbergObjectPlugin = new GutesObjectPlugin( $database, $api, $hooks );
+	
+	$gutenbergObjectPlugin->run();
+	
+	$GLOBALS['gutenbergObjectPlugin'] = $gutenbergObjectPlugin;
+	
+});
