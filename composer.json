@@ -1,5 +1,5 @@
 {
-    "name": "creativelittledots/gutenberg-object-plugin",
+    "name": "wp-kit/gutenberg-object-plugin",
     "description": "Saving Gutenberg as a clean array of data to the database",
     "type": "wordpress-plugin",
     "license": "GPL-3.0",
