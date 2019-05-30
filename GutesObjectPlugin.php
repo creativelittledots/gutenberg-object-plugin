@@ -57,4 +57,3 @@ $database = new Database();
 
 $gutenbergObjectPlugin = new GutesObjectPlugin( $database, $api, $hooks );
 $gutenbergObjectPlugin->run();
-$database->create();
