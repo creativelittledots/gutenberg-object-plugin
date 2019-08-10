@@ -53,7 +53,7 @@ if( function_exists( 'add_action' ) ) {
 	add_action( 'init', function() {
 
 		// construction of plugin
-		$scripts = new Scripts();
+		//$scripts = new Scripts();
 
 		$api = new API();
 		$hooks = new Hooks( $api );
