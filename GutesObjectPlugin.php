@@ -45,12 +45,8 @@ class GutesObjectPlugin {
 		self::$GutesObjectPluginFile = __FILE__;
 		self::$GutesObjectPluginUrl = plugin_dir_url( __FILE__ );
 	}
-
-}
-
-if( function_exists( 'add_action' ) ) {
-
-	add_action( 'init', function() {
+	
+	public static function init() {
 		
 		// construction of plugin
 		$scripts = new Scripts();
@@ -64,6 +60,16 @@ if( function_exists( 'add_action' ) ) {
 		$gutenbergObjectPlugin->run();
 	
 		$GLOBALS['gutenbergObjectPlugin'] = $gutenbergObjectPlugin;
+		
+	}
+
+}
+
+if( function_exists( 'add_action' ) ) {
+
+	add_action( 'init', function() {
+		
+		GutesObjectPlugin::init();
 		
 	});
 	
