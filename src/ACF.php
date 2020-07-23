@@ -24,15 +24,11 @@ class ACF {
 	
 	public function transform_acf_prepare_block($block) {
 		
-		$has_acf_blocks = false;
-		
 		if(strpos($block->name, 'acf/') === 0) {
 			
 			acf_setup_meta( json_decode(json_encode($block->props), true), $block->id, true );
 			
 			$block->props = get_fields($block->id);
-			
-			$has_acf_blocks = true;
 			
 		}
 		
