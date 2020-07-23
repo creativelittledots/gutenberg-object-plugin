@@ -102,7 +102,7 @@ class API {
 
 		$return = [
 			'post_id' => $post_id,
-			'save' => $this->save_editor_db( $post_id, apply_filters( 'gutenberg_object_plugin_data', $data['gutes_data'], $post_id ) ),
+			'save' => $this->save_editor_db( $post_id, apply_filters( 'gutenberg_object_save_plugin_data', $data['gutes_data'], $post_id ) ),
 		];
 
 		return new \WP_REST_Response( $return );

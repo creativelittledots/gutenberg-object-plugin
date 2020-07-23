@@ -84,12 +84,10 @@ export class SaveBlock {
     for ( let block of blocks ) {
       let blockName = block.name.replace( '/', '-' );
       newBlocks.push({
-        uid: block.uid || block.clientId,
+        id: block.name.includes('acf/') ? block.attributes.id : ( block.uid || block.clientId ),
         name: block.name,
-        data: {
-	        attributes: wp.hooks.applyFilters( `clean_data_${blockName}`, ( block.attributes.attributes || block.attributes ), block.name, block.innerBlocks ),
-	        innerBlocks: SaveBlock.cleanData( block.innerBlocks )
-		}
+        props: wp.hooks.applyFilters( `clean_data_${blockName}`, ( block.attributes.attributes || block.attributes.data || block.attributes ), block.name, block.innerBlocks ),
+		innerBlocks: SaveBlock.cleanData( block.innerBlocks )
       })
     }
     return newBlocks;

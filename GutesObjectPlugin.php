@@ -23,6 +23,7 @@ require_once 'src/Helpers.php';
 use GutesObjectPlugin\Scripts;
 use GutesObjectPlugin\Database;
 use GutesObjectPlugin\API;
+use GutesObjectPlugin\ACF;
 use GutesObjectPlugin\Hooks;
 
 
@@ -31,14 +32,16 @@ class GutesObjectPlugin {
 	public static $GutesObjectPluginUrl;
 	public static $GutesObjectPluginFile;
 
-	private $database;
-	private $api;
-	private $hooks;
+	public $database;
+	public $api;
+	public $hooks;
+	public $acf;
 
-	public function __construct( Database $database, API $api, Hooks $hooks ) {
+	public function __construct( Database $database, API $api, Hooks $hooks, ACF $acf ) {
 		$this->database = $database;
 		$this->api = $api;
 		$this->hooks = $hooks;
+		$this->acf = $acf;
 	}
 
 	public function run() {
@@ -52,10 +55,14 @@ class GutesObjectPlugin {
 		$scripts = new Scripts();
 	
 		$api = new API();
+		
+		if( class_exists('ACF') )
+			$acf = new ACF();
+			
 		$hooks = new Hooks( $api );
 		$database = new Database();
 	
-		$gutenbergObjectPlugin = new GutesObjectPlugin( $database, $api, $hooks );
+		$gutenbergObjectPlugin = new GutesObjectPlugin( $database, $api, $hooks, $acf );
 	
 		$gutenbergObjectPlugin->run();
 	
